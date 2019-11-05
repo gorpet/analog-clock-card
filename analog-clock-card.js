@@ -3,11 +3,13 @@ class AnalogClockCard extends Polymer.Element {
   static get template() {
     return Polymer.html`
       <style>
-        
+        .content {
+          text-align: center;
+        }
       </style>
       <ha-card>
         <div class="content">
-          <canvas id="canvas" width="400" height="400" style="background-color:#333"></canvas>
+          <canvas id="canvas" width="350" height="350"></canvas>
         </div>
       </ha-card>
      `
