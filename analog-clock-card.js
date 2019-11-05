@@ -22,9 +22,9 @@ class AnalogClockCard extends Polymer.Element {
   ready() {
     super.ready();
     this.canvas = this.$.canvas;
-    this.ctx = canvas.getContext("2d");
-    this.radius = canvas.height / 2;
-    this.ctx.translate(radius, radius);
+    this.ctx = this.canvas.getContext("2d");
+    this.radius = this.canvas.height / 2;
+    this.ctx.translate(this.radius, this.radius);
     this.radius = this.radius * 0.90
     this._drawClock();
     setInterval(() => this._drawClock(), 1000);
