@@ -21,21 +21,22 @@ class AnalogClockCard extends Polymer.Element {
   
   ready() {
     super.ready();
-    var canvas = document.getElementById("canvas");
-    var ctx = canvas.getContext("2d");
-    var radius = canvas.height / 2;
-    ctx.translate(radius, radius);
-    radius = radius * 0.90
-    setInterval(drawClock, 1000);
+    this.canvas = this.$.canvas;
+    this.ctx = canvas.getContext("2d");
+    this.radius = canvas.height / 2;
+    this.ctx.translate(radius, radius);
+    this.radius = this.radius * 0.90
+    this._drawClock();
+    setInterval(() => this._drawClock(), 1000);
   }
   
-  function drawClock() {
-    drawFace(ctx, radius);
-    drawNumbers(ctx, radius);
-    drawTime(ctx, radius);
+  function _drawClock() {
+    _drawFace(this.ctx, this.radius);
+    _drawNumbers(this.ctx, this.radius);
+    _drawTime(this.ctx, this.radius);
   }
 
-  function drawFace(ctx, radius) {
+  function _drawFace(ctx, radius) {
     var grad;
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2*Math.PI);
@@ -54,7 +55,7 @@ class AnalogClockCard extends Polymer.Element {
     ctx.fill();
   }
 
-  function drawNumbers(ctx, radius) {
+  function _drawNumbers(ctx, radius) {
     var ang;
     var num;
     ctx.font = radius*0.15 + "px arial";
@@ -72,7 +73,7 @@ class AnalogClockCard extends Polymer.Element {
     }
   }
 
-  function drawTime(ctx, radius){
+  function _drawTime(ctx, radius){
     var now = new Date();
     var hour = now.getHours();
     var minute = now.getMinutes();
@@ -82,16 +83,16 @@ class AnalogClockCard extends Polymer.Element {
     hour=(hour*Math.PI/6)+
     (minute*Math.PI/(6*60))+
     (second*Math.PI/(360*60));
-    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    _drawHand(ctx, hour, radius*0.5, radius*0.07);
     //minute
     minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
-    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    _drawHand(ctx, minute, radius*0.8, radius*0.07);
     // second
     second=(second*Math.PI/30);
-    drawHand(ctx, second, radius*0.9, radius*0.02);
+    _drawHand(ctx, second, radius*0.9, radius*0.02);
   }
 
-  function drawHand(ctx, pos, length, width) {
+  function _drawHand(ctx, pos, length, width) {
     ctx.beginPath();
     ctx.lineWidth = width;
     ctx.lineCap = "round";
