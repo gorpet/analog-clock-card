@@ -1,2 +1,2 @@
-# analog-clock-card
+# Analog Clock Lovelace card
 My Home Assistant projects
