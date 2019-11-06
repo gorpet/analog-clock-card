@@ -9,7 +9,7 @@ class AnalogClockCard extends Polymer.Element {
       </style>
       <ha-card>
         <div class="content">
-          <canvas id="canvas" width="350" height="350"></canvas>
+          <canvas id="canvas" width="300" height="300"></canvas>
         </div>
       </ha-card>
      `
@@ -27,7 +27,7 @@ class AnalogClockCard extends Polymer.Element {
     this.ctx = this.canvas.getContext("2d");
     this.radius = this.canvas.height / 2;
     this.ctx.translate(this.radius, this.radius);
-    this.radius = this.radius * 0.90
+    this.radius = this.radius * 0.90;
     this._drawClock();
     setInterval(() => this._drawClock(), 1000);
   }
@@ -46,7 +46,7 @@ class AnalogClockCard extends Polymer.Element {
     ctx.fill();
     grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
     grad.addColorStop(0, '#333');
-    grad.addColorStop(0.5, 'white');
+    grad.addColorStop(0.5, '#56a0ee');
     grad.addColorStop(1, '#333');
     ctx.strokeStyle = grad;
     ctx.lineWidth = radius*0.1;
@@ -54,6 +54,8 @@ class AnalogClockCard extends Polymer.Element {
     ctx.beginPath();
     ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
     ctx.fillStyle = '#333';
+    var date = new Date();
+    ctx.fillText(date.toLocaleDateString("hr-HR"), 5, -70);
     ctx.fill();
   }
 
