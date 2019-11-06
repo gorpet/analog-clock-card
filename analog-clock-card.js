@@ -55,7 +55,7 @@ class AnalogClockCard extends Polymer.Element {
     ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
     ctx.fillStyle = '#333';
     var date = new Date();
-    ctx.fillText(date.toLocaleDateString("hr-HR"), 5, -70);
+    ctx.fillText(date.toLocaleDateString("hr-HR"), 5, -60);
     ctx.fill();
   }
 
